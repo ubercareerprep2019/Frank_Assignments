@@ -57,6 +57,7 @@ public class Permutation {
 				return false;
 			}
 		}
+		//check that all the keys have a numerical value of 0 bc of the decrementing, else, false
 		Set<Character> keys = h.keySet();
 		Iterator<Character> iterator = keys.iterator();
 		while (iterator.hasNext()) {
