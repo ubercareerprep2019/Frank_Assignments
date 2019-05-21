@@ -10,12 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class pairsThatEqual {
-
-	/**
-	 *
-	 */
 	public static ArrayList<int[]> pairsThatEqualSum(int[] inputArray, int targetSum) {
-		// TODO return an array of all pairs of integers from the input array whose sum
+		//return an array of all pairs of integers from the input array whose sum
 		// equal the the target
 		Arrays.sort(inputArray);
 		int start = 0;
