@@ -13,8 +13,7 @@ def solve_hanoi(n, start, goal, temp):
         
     else:
     
-        # it's harder to move multiple disks. We have to first move
-        # the top n-1 disks temporarily to "temp" then move the
+        # first move the top n-1 disks temporarily to "temp" then move the
         # largest disk to the target peg. Then move the remaining n-1
         # disks back on top of thh largest @ target.
 
