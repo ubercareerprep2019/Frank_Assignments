@@ -33,11 +33,11 @@ public class Stacks<E> implements Stack<E> {
 	public E pop() {
 		if (isEmpty())
 			return null;
-		E answer = stack[top];
+		E val = stack[top];
 		stack[top] = null; // dereference to help garbage collection (learnt this in class.) this line can
 							// be ommited without changing the complexity of the program
 		top--;
-		return answer;
+		return val;
 	}
 
 	@Override
