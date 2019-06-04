@@ -20,7 +20,7 @@ public class Permutation {
 	static HashMap<Character, Integer> h = new HashMap<>();
 
 	public static boolean isStringPermutation(String s1, String s2) {
-		// TODO return true if one string is the permutation of the other, false
+		//return true if one string is the permutation of the other, false
 		// otherwise.
 
 		// check if the strings are same length
