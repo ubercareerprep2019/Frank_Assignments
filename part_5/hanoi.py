@@ -19,15 +19,12 @@ def solve_hanoi(n, start, goal, temp):
         # disks back on top of thh largest @ target.
 
         # temporarily move all but the last disk to the "other peg"
-        # how can we do this? Check the specs of THIS FUNCTION. It
-        # can do exactly this!
         solve_hanoi(n-1, start, temp, goal)
         
         # move the last disk to the target peg 
         print("move from " + start + " to " + goal)
 
         # now move all but the last disk to the target peg
-        # again, how can we do this? we can call THIS FUNCTION
         solve_hanoi(n-1, temp, goal, start)
 
 
