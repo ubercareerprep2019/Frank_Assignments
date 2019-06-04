@@ -69,7 +69,6 @@ public class SLList<E> implements Iterable<E> {
 	 */
 
 	public void pushBack(E v) {
-		// TODO 3. This is the third method to write and test
 		Node n = new Node(v, null);
 		// set forward link
 		if (size == 0)
@@ -82,7 +81,7 @@ public class SLList<E> implements Iterable<E> {
 	}
 
 	public Node getNode(int h) {
-		// TODO 4. This method should take time proportional to min(h, size-h).
+		//This method should take time proportional to min(h, size-h).
 		// For example, if h <= size/2, search from the beginning of the
 		// list, otherwise search from the end of the list.
 		assert 0 <= h && h < size;
@@ -118,8 +117,8 @@ public class SLList<E> implements Iterable<E> {
 		private Node next; // Next node on list. (null if this is last node)
 
 		/**
-		 * Constructor: an instance with previous node p (can be null), <br>
-		 * value v, and next node n (can be null).
+		 * Constructor: an instance with
+		 * value and next node n (can be null).
 		 */
 		Node(E v, Node n) {
 			val = v;
