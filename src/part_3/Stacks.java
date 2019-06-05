@@ -12,8 +12,17 @@ public class Stacks<E> implements Stack<E> {
 	/**
 	 *
 	 */
+	public static final int CAPACITY = 1000;
 	private E[] stack;
 	private int top = -1; // index of the top element in the stack
+
+	public Stacks() {
+		this(CAPACITY);
+	}
+
+	public Stacks(int capacity) {
+		stack = (E[]) new Object[capacity];
+	}
 
 	/** Construct a stack with a given capacity */
 	/**
