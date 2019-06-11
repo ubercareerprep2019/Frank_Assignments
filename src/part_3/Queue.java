@@ -7,10 +7,6 @@ public class Queue<Integer> {
 	 * remove the last element and return it, then all the other elements are pushed
 	 * back to the main stack at the end of the recursion
 	 */
-	/**
-	 * Added implementations for min(). This changes my queue implementation to have
-	 * two stacks, the main stack and the one that keeps track of the min value.
-	 */
 	private Stacks<Integer> stack;
 
 	public Queue() {
