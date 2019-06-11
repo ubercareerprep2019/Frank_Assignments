@@ -1,10 +1,11 @@
 package part_4;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /** an instance is a singly linked list */
 
-public class SLList<E> implements Iterable<E> {
+public class SLList<T> implements Iterable<T> {
 
 	private Node first;
 	/** Last node of linked list (null if size is 0) */
@@ -28,20 +29,20 @@ public class SLList<E> implements Iterable<E> {
 	 * First value in the list. <br>
 	 * Throw a NoSuchElementException if list is empty.
 	 */
-	public E first() {
-		if (size == 0)
+	public T first() {
+		if (isEmpty())
 			throw new NoSuchElementException();
-		return first.val;
+		return first.value();
 	}
 
 	/**
 	 * = the last value of the list. <br>
 	 * Throw a NoSuchElementException if list is empty.
 	 */
-	public E last() {
-		if (size == 0)
+	public T last() {
+		if (isEmpty())
 			throw new NoSuchElementException();
-		return last.val;
+		return last.value();
 	}
 
 	/** = the first node of the list (null if the list is empty). */
@@ -58,9 +59,13 @@ public class SLList<E> implements Iterable<E> {
 	 * = the value of node n of this list. This function takes constant time.<br>
 	 * Precondition: n is a node of this list; it may not be null.
 	 */
-	public E value(Node n) {
+	public T value(Node n) {
 		assert n != null;
 		return n.val;
+	}
+
+	public boolean isEmpty() {
+		return size == 0;
 	}
 
 	/**
@@ -68,20 +73,41 @@ public class SLList<E> implements Iterable<E> {
 	 * This operation takes constant time.
 	 */
 
-	public void pushBack(E v) {
+	public void pushBack(T v) {
 		Node n = new Node(v, null);
 		// set forward link
-		if (size == 0)
+		if (isEmpty())
 			first = n;
 		else
-			last.next = n;
+			last.setNext(n);
 
 		last = n;
 		size = size + 1;
 	}
 
+	public T popBack() {
+		T value = last.value();
+		last = null;
+		size -= 1;
+		return value;
+
+	}
+
+	public void insert(int index) {
+		if (index < size + 1 && index > 0 || index == 0) {
+			size++;
+			Node n = new Node(data, getElementAt(index));
+			if (index == 0) {
+				first = n;
+
+			} else {
+				getElementAt(index - 1).setNext(n);
+			}
+		}
+	}
+
 	public Node getNode(int h) {
-		//This method should take time proportional to min(h, size-h).
+		// This method should take time proportional to min(h, size-h).
 		// For example, if h <= size/2, search from the beginning of the
 		// list, otherwise search from the end of the list.
 		assert 0 <= h && h < size;
@@ -92,6 +118,19 @@ public class SLList<E> implements Iterable<E> {
 		}
 		// n points to node h
 		return n;
+	}
+
+	public T remove(int index) {
+		T element = get(index);
+		if (index == 0) {
+			first = first.next();
+		} else {
+			Node node = getNode(index - 1);
+			node.next = node.next.next();
+		}
+		size--;
+		return element;
+
 	}
 
 	public void erase(Node n) {
@@ -105,28 +144,26 @@ public class SLList<E> implements Iterable<E> {
 	}
 
 	@Override
-	public Iterator<E> iterator() {
+	public Iterator<T> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	// TODO Auto-generated constructor stub
 
 	/** An instance is a node of this list. */
 	public class Node {
-		private E val; // The value of this element
+		private T val; // The value of this element
 		private Node next; // Next node on list. (null if this is last node)
 
 		/**
-		 * Constructor: an instance with
-		 * value and next node n (can be null).
+		 * Constructor: an instance with value and next node n (can be null).
 		 */
-		Node(E v, Node n) {
+		Node(T v, Node n) {
 			val = v;
 			next = n;
 		}
 
 		/** Return the value of this node. */
-		public E value() {
+		public T value() {
 			return val;
 		}
 
@@ -136,6 +173,12 @@ public class SLList<E> implements Iterable<E> {
 		 */
 		public Node next() {
 			return next;
+		}
+
+		// set the next node
+
+		public void setNext(Node n) {
+			next = n;
 		}
 	}
 }

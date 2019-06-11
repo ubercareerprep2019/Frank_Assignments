@@ -7,13 +7,13 @@ package part_3;
  * @author frankomullo
  *
  */
-public class Stacks<E> implements Stack<E> {
+public class Stacks<T> implements Stack<T> {
 
 	/**
 	 *
 	 */
-	public static final int CAPACITY = 1000;
-	private E[] stack;
+	public static final int CAPACITY = 1000; // random capacity, though not necessary.
+	private T[] stack;
 	private int top = -1; // index of the top element in the stack
 
 	public Stacks() {
@@ -21,7 +21,7 @@ public class Stacks<E> implements Stack<E> {
 	}
 
 	public Stacks(int capacity) {
-		stack = (E[]) new Object[capacity];
+		stack = (T[]) new Object[capacity];
 	}
 
 	/** Construct a stack with a given capacity */
@@ -31,26 +31,29 @@ public class Stacks<E> implements Stack<E> {
 	 */
 
 	@Override
-	public void push(E e) throws IllegalStateException {
+	public void push(T val) throws IllegalStateException {
 		if (size() == stack.length)
 			throw new IllegalStateException("Stack is full");
-		stack[++top] = e; // increment t before storing a new item
+		stack[++top] = val; // increment t before storing a new item
 
 	}
 
 	@Override
-	public E pop() {
+	public T pop() {
 		if (isEmpty())
 			return null;
-		E val = stack[top];
+		T val = stack[top];
 		stack[top] = null; // dereference to help garbage collection (learnt this in class.) this line can
 							// be ommited without changing the complexity of the program
 		top--;
 		return val;
+
+		// alternatively,
+		// return stack[top--];
 	}
 
 	@Override
-	public E top() {
+	public T top() {
 		if (isEmpty()) {
 			return null;
 		}

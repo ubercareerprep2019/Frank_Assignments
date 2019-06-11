@@ -6,13 +6,13 @@ package part_3;
  * according to the Last-In-First-Out-Principle
  */
 
-public interface Stack<E> {
+public interface Stack<T> {
 	/**
 	 * Pushes an element onto the top of the stack
 	 *
 	 * @param e, the element to be inserted
 	 */
-	void push(E e);
+	void push(T e);
 
 	/**
 	 * Removes the element on top of the stack, and returns that value to the caller
@@ -20,7 +20,7 @@ public interface Stack<E> {
 	 * @return element removed, or null if empty
 	 */
 
-	E pop();
+	T pop();
 
 	/**
 	 * Looks at the element at the top of the stack and returns it without
@@ -29,7 +29,7 @@ public interface Stack<E> {
 	 * @return top element on the stack, null if empty
 	 */
 
-	E top();
+	T top();
 
 	/**
 	 * checks whether the stack is empty
