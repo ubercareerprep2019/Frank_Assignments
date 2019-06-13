@@ -4,6 +4,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /** an instance is a singly linked list */
+/**
+ * I've modified my implementation so that for each can be used to iterate over
+ * elements of list
+ */
 
 public class SLList<T> implements Iterable<T> {
 
@@ -15,6 +19,9 @@ public class SLList<T> implements Iterable<T> {
 
 	/** Constructor: an empty linked list. */
 	public SLList() {
+		first = null;
+		last = null;
+		size = 0;
 	}
 
 	/**
@@ -76,13 +83,17 @@ public class SLList<T> implements Iterable<T> {
 	public void pushBack(T v) {
 		Node n = new Node(v, null);
 		// set forward link
-		if (isEmpty())
+		if (isEmpty()) {
 			first = n;
-		else
+		}
+
+		else {
 			last.setNext(n);
 
-		last = n;
-		size = size + 1;
+			last = n;
+			size = size + 1;
+		}
+
 	}
 
 	public T popBack() {
@@ -93,7 +104,7 @@ public class SLList<T> implements Iterable<T> {
 
 	}
 
-	public void insert(int index) {
+	public void insert(int index, T data) {
 		if (index < size + 1 && index > 0 || index == 0) {
 			size++;
 			Node n = new Node(data, getElementAt(index));
@@ -106,47 +117,70 @@ public class SLList<T> implements Iterable<T> {
 		}
 	}
 
-	public Node getNode(int h) {
-		// This method should take time proportional to min(h, size-h).
-		// For example, if h <= size/2, search from the beginning of the
-		// list, otherwise search from the end of the list.
-		assert 0 <= h && h < size;
-		Node n = first;
-		// invariant: n points to node i of the list
-		for (int i = 0; i < h; i = i + 1) {
-			n = n.next;
+	public Node getElementAt(int index) {
+		int count = 0;
+		Node curr = first;
+		while (index < size && index >= 0) {
+			if (count == index) {
+				return curr;
+			} else {
+				curr = curr.next();
+				count += 1;
+			}
 		}
-		// n points to node h
-		return n;
-	}
-
-	public T remove(int index) {
-		T element = get(index);
-		if (index == 0) {
-			first = first.next();
-		} else {
-			Node node = getNode(index - 1);
-			node.next = node.next.next();
-		}
-		size--;
-		return element;
-
-	}
-
-	public void erase(Node n) {
-		Node temp = first;
-		while (temp.next != null && temp.val != n.val) {
-			temp = temp.next;
-		}
-		if (temp.next != null) {
-			temp.next = temp.next.next;
-		}
-	}
-
-	@Override
-	public Iterator<T> iterator() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	// alternative implementation of elementAt
+//	public Node getNode(int h) {
+//		// This method should take time proportional to min(h, size-h).
+//		// For example, if h <= size/2, search from the beginning of the
+//		// list, otherwise search from the end of the list.
+//		assert 0 <= h && h < size;
+//		Node n = first;
+//		// invariant: n points to node i of the list
+//		for (int i = 0; i < h; i = i + 1) {
+//			n = n.next;
+//		}
+//		// n points to node h
+//		return n;
+//	}
+
+	// helper function for element at
+	private Node getNodeAt(int index) {
+		Node curr = this.first;
+		for (int i = 0; i < index; i++)
+			curr = curr.next;
+		return curr;
+	}
+
+	// Returns a single node at the index location in the list.
+	public Node elementAt(int index) {
+		Node result = null;
+		if (0 <= index && index < this.size())
+			result = this.getNodeAt(index);
+		return result;
+
+	}
+
+	// Erases a single node at the index location in the list.
+	public void erase(int index) {
+		Node curr = first;
+		if (index == 0) {
+			first = curr.next;
+
+		}
+		int count = 0;
+		Node prev = first;
+		curr = first.next;
+		while (curr != null) {
+			if (count == index) {
+				prev.next = curr.next;
+			}
+			count++;
+			prev = curr;
+			curr = curr.next;
+		}
 	}
 
 	/** An instance is a node of this list. */
@@ -179,6 +213,38 @@ public class SLList<T> implements Iterable<T> {
 
 		public void setNext(Node n) {
 			next = n;
+		}
+	}
+
+	/** Return an Iterator over the elements of this list. */
+	@Override
+	public Iterator<T> iterator() {
+		return new SLListIterator();
+	}
+
+	/*********************/
+
+	private class SLListIterator implements Iterator<T> {
+		int n = 0; // point reached during enumeration
+
+		public SLListIterator() {
+		}
+
+		public @Override boolean hasNext() {
+			return n < size;
+		}
+
+		public @Override T next() {
+			if (!hasNext())
+				throw new NoSuchElementException();
+			Node e = first;
+			int k = 0;
+			while (k < n) {
+				e = e.next;
+				k = k + 1;
+			}
+			n = n + 1;
+			return e.value();
 		}
 	}
 }
