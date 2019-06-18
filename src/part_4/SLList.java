@@ -1,5 +1,6 @@
 package part_4;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -183,8 +184,58 @@ public class SLList<T> implements Iterable<T> {
 		}
 	}
 
+	/**
+	 * This method leverages a stack to implement the function recursively.
+	 * isPalindrome leverages the state of the function
+	 */
+	private Node left = null; // global variable to be used for the isPalindrome method
+
+	public boolean isPalindrome(Node head) {
+		if (head == null || head.next() == null)
+			return true;
+		left = head;
+		return palinHelper(head);
+	}
+
+	/**
+	 * helper recursive function for the palindrome method the helper function is
+	 * called on every node on the list,, up to the last node, then we compare the
+	 * first and last nodes and then return the result after moving the left pointer
+	 * to the next
+	 */
+	private boolean palinHelper(Node right) {
+		if (right == null)
+			return true;
+
+		if (!palinHelper(right.next()))
+			return false;
+		boolean result = left.val == right.val;
+		left = left.next();
+		return result;
+	}
+
+	/**
+	 * store all nodes in a hashset to ensure uniqueness, initialize a current node
+	 * pointer to check if it exists in the set, if it is in the set, then the list
+	 * is cyclic, boom!!
+	 */
+	public boolean hasCycle() {
+		HashSet<Node> set = new HashSet<>();
+		Node curr = first;
+		while (curr != null) {
+			if (set.contains(curr))
+				return true;
+			else
+				set.add(curr);
+			curr = curr.next();
+
+		}
+		return false;
+	}
+
 	/** An instance is a node of this list. */
 	public class Node {
+
 		private T val; // The value of this element
 		private Node next; // Next node on list. (null if this is last node)
 

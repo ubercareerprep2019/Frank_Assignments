@@ -67,6 +67,15 @@ class SLListTest {
 	}
 
 	@Test
+	public void testIsPalindrome() {
+		int[] keys = { 2, 3, 5, 3, 2 };
+		Node head = null;
+		for (int i = keys.length - 1; i > 0; i--)
+			head.pushBack(head, keys[i]);
+		assertEquals(true, isPalindrome(head));
+	}
+
+	@Test
 	public void testIterator() {
 		// Make a list of the integers in 10..19
 		SLList<Integer> d = new SLList<>();
