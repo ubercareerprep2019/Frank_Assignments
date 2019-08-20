@@ -13,12 +13,12 @@ public interface Graph {
 	boolean hasEdge(int u, int v);
 
 	/**
-	 * Return a list of neighbors of n. Precondition: 0 <= n < number of nodes
+	 * Return a list of neighbors of n.
 	 */
 	List<Integer> getNeighbors(int n);
 
 	/**
-	 * Print the graph. Precondition: the graph has < 100 nodes
+	 * Print the graph.
 	 */
 	void printGraph();
 }
