@@ -36,8 +36,8 @@ public class GraphSearch {
 		// clearVisited();
 		Stack<Integer> st = new Stack<>();
 		st.push(n);
-		// inv: Every node initially reachable from n along
-		// a path of unvisited nodes is reachable along suc
+		// assumption: Every node initially reachable from n along
+		// a path of unvisited nodes is reachable along such
 		// a path from some node in st.
 		while (!st.isEmpty()) {
 			int node = st.pop();
@@ -60,7 +60,7 @@ public class GraphSearch {
 		Queue<Integer> queue = new LinkedList<>();
 		queue.add(n);
 		// inv: Every node initially reachable from n along
-		// a path of unvisited nodes is reachable along suc
+		// a path of unvisited nodes is reachable along such
 		// a path from some node in st.
 		while (!queue.isEmpty()) {
 			int node = queue.poll();
