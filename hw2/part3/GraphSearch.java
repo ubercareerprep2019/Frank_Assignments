@@ -16,7 +16,7 @@ public class GraphSearch {
 
 	/**
 	 * Visit every node that is reachable along a path of unvisited nodes starting
-	 * at node n. Precondition: n is not visited.
+	 * at node n. Precondition: n is not visited. print each node visited
 	 */
 	public void DFS(int n) {
 		visit(n);
@@ -54,7 +54,7 @@ public class GraphSearch {
 
 	/**
 	 * Visit every node that is reachable along a path of unvisited nodes starting
-	 * at node n in breadth-first order.
+	 * at node n in breadth-first order. Print each visited node
 	 */
 	public void BFS(int n) {
 		Queue<Integer> queue = new LinkedList<>();

@@ -3,7 +3,6 @@ package part_3;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.*;
 
 public class GraphNode {
 	public int data;
@@ -20,18 +19,19 @@ class GraphWithAdjacencyList {
 	void addNode(int key) {
 		adjNodes.putIfAbsent(new GraphNode(key), new ArrayList<Integer>());
 	}
-	public GraphNode getNode(int key){
-	    for(GraphNode g: adjNodes.keySet()){
-	        if(g.data == key){
-	            return g;
-            }
-        }
-	    return null;
-    }
+
+	public GraphNode getNode(int key) {
+		for (GraphNode g : adjNodes.keySet()) {
+			if (g.data == key) {
+				return g;
+			}
+		}
+		return null;
+	}
 
 	void removeNode(int key) {
 		GraphNode V = new GraphNode(key);
-		adjNodes.values().stream().forEach(e -> e.remove(V));
+		adjNodes.values().stream().forEach(e -> e.remove(V)); // iterate and remove
 		adjNodes.remove(new GraphNode(key));
 	}
 
@@ -57,8 +57,8 @@ class GraphWithAdjacencyList {
 	}
 
 	List<GraphNode> getAdjNodes(int key) {
-	    GraphNode n = this.getNode(key);
-	    return adjNodes.get(n);
+		GraphNode n = getNode(key);
+		return adjNodes.get(n);
 
 	}
 
