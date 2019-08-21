@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
+import part_3.GraphNode;
+import part_3.GraphSearch;
+
 public class Paths {
 	/**
 	 * Return the shortest path from node v to node end <br>
@@ -54,6 +57,15 @@ public class Paths {
 
 	}
 
+	public List<Node> minNumberOfEdges(int n1, int n2) {
+		HashMap<Node, DB> map = new HashMap<>();
+		GraphNode start = new GraphNode(n1);
+		GraphNode end = new GraphNode(n2);
+
+		return shortest(start, end);
+
+	}
+
 	/**
 	 * This class instance contains the distance of a shortest path to a node and
 	 * the back pointer for that node
@@ -87,5 +99,33 @@ public class Paths {
 		}
 		return path;
 	}
+
+public static void main(String[] args){
+
+	GraphWithAdjacencyList graph = new GraphWithAdjacencyList(3);
+
+        graph.addNode(4);
+        graph.addEdge(3, 4);
+
+        graph.addNode(5);
+        graph.addNode(0);
+        graph.addEdge(4, 0);
+        graph.addEdge(4, 5);
+
+        graph.addNode(6);
+        graph.addNode(2);
+        graph.addNode(1);
+
+        graph.addEdge(4, 6);
+        graph.addEdge(0, 2);
+        graph.addEdge(2, 5);
+        graph.addEdge(2, 1);
+        graph.addEdge(0, 1);
+
+
+        System.out.println(graph.minNumberOfEdges(3, 2));
+        System.out.println(graph.minNumberOfEdges(1, 5)); //2
+        System.out.println(graph.minNumberOfEdges(6, 1));//3
+
 
 }
