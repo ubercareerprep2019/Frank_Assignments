@@ -24,7 +24,9 @@ public class Edge {
 		this.length = length;
 	}
 
-	/** Constructor: an edge that is isomorphic to isomorphism. */
+	/** Constructor: an edge that is isomorphic to isomorphism. 
+	* stack overflow lol...
+	*/
 	public Edge(Edge e, Map<Node, Node> isomorphism) {
 		src = isomorphism.get(e.src);
 		dest = isomorphism.get(e.dest);
@@ -32,7 +34,7 @@ public class Edge {
 	}
 
 	/**
-	 * Return the <tt>Node</tt> on this <tt>Edge</tt> that is not equal to
+	 * Return the node on this <tt>Edge</tt> that is not equal to
 	 * <tt>n</tt>. Throws an <tt>IllegalArgumentException</tt> if <tt>n</tt> is not
 	 * in this <tt>Edge</tt>.
 	 *
