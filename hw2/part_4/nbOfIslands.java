@@ -2,6 +2,8 @@ package part_4;
 
 public class nbOfIslands {
 	public int[][] visited;
+	
+	//Write a method nbOfIslands(bool[][] islandMap) that returns the number of islands in a 2d map
 
 	public int numIslands(char[][] islandMap) {
 		if (islandMap.length == 0) {
