@@ -99,22 +99,6 @@ public class OrgStruct {
 
 	}
 
-//	public void printNumLevels() {
-//		Employee curr = ceo;
-//		int depth = 0;
-//		Queue<Employee> queue = new LinkedList<>();
-//		queue.add(curr);
-//		while (!queue.isEmpty()) {
-//			Queue<Employee> temp = new LinkedList<>();
-//			for (Employee e : queue) {
-//				temp.addAll(e.getSubs());
-//			}
-//			depth++;
-//			queue = temp;
-//		}
-//		System.out.println(depth);
-//	}
-
 	public void orgChart() {
 		Employee K = new Employee("K", "Sales Intern", null);
 
